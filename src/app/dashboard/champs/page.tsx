@@ -5,14 +5,21 @@ import Link from "next/link";
 export default async function ChampsPage() {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
-  const { data: profil } = await supabase.from("profils").select("organisation_id").eq("id", user!.id).single();
+  const { data: profil } = await supabase.from("profils").select("organisation_id, role").eq("id", user!.id).single();
   const orgId = (profil as any)?.organisation_id;
+  const role  = (profil as any)?.role;
 
-  const { data: champs } = await supabase
+  // Super admin voit tous les champs, les autres voient ceux de leur org
+  let query = supabase
     .from("champs")
-    .select("*, cultures(id, type_culture, statut)")
-    .eq("organisation_id", orgId)
+    .select("*, cultures(id, type_culture, statut), organisations(nom)")
     .order("created_at", { ascending: false });
+
+  if (role !== "super_admin") {
+    query = query.eq("organisation_id", orgId);
+  }
+
+  const { data: champs } = await query;
 
   return (
     <div className="animate-fade-up space-y-6 max-w-6xl">
@@ -43,6 +50,9 @@ export default async function ChampsPage() {
                   }
                 </div>
                 <h3 className="font-bold text-slate-800 text-[15px]">{c.nom}</h3>
+                {role === "super_admin" && c.organisations?.nom && (
+                  <div className="text-xs text-slate-400 mt-0.5">🏢 {c.organisations.nom}</div>
+                )}
                 <div className="flex items-center gap-2 mt-1 flex-wrap">
                   {c.surface_ha && (
                     <span className="badge badge-green text-[11px]">📐 {c.surface_ha} ha</span>
