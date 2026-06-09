@@ -61,15 +61,15 @@ export default function NouveauChampPage() {
             </div>
             <div>
               <label className="field-label">Localisation / Village</label>
-              <input className="input" value={form.localisation} onChange={e => set("localisation", e.target.value)} placeholder="Ex : Coyah, Kindia, Dubréka..." />
+              <input className="input" value={form.localisation} onChange={e => set("localisation", e.target.value)} placeholder="Ex : Bamako, Sikasso, Ségou, Koutiala..." />
             </div>
           </div>
 
           <div>
             <label className="field-label">📍 Coordonnées GPS <span className="text-slate-400 font-normal">(optionnel)</span></label>
             <div className="grid sm:grid-cols-2 gap-4">
-              <input className="input" type="number" step="any" value={form.gps_lat} onChange={e => set("gps_lat", e.target.value)} placeholder="Latitude  Ex : 9.5370" />
-              <input className="input" type="number" step="any" value={form.gps_lng} onChange={e => set("gps_lng", e.target.value)} placeholder="Longitude  Ex : -13.6773" />
+              <input className="input" type="number" step="any" value={form.gps_lat} onChange={e => set("gps_lat", e.target.value)} placeholder="Latitude  Ex : 12.6500" />
+              <input className="input" type="number" step="any" value={form.gps_lng} onChange={e => set("gps_lng", e.target.value)} placeholder="Longitude  Ex : -8.0000" />
             </div>
             <p className="text-xs text-slate-400 mt-1">Sur ton téléphone : ouvre Google Maps, maintiens le doigt sur l'emplacement, copie les coordonnées.</p>
           </div>

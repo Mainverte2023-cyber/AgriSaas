@@ -31,7 +31,7 @@ export default function AdminUsersClient({ utilisateurs, organisations }: Props)
   const [form, setForm] = useState({
     email: "", telephone: "", password: "", nom_complet: "",
     role: "client", organisation_id: organisations[0]?.id ?? "",
-    nouvelle_org: "", pays: "Guinée",
+    nouvelle_org: "", pays: "Mali",
   });
   const [creerOrg, setCreerOrg] = useState(false);
 
@@ -237,7 +237,7 @@ export default function AdminUsersClient({ utilisateurs, organisations }: Props)
           {creerOrg && (
             <div>
               <label className="field-label">Pays de l'organisation</label>
-              <input className="input" value={form.pays} onChange={e => setField("pays", e.target.value)} placeholder="Ex : Guinée, Sénégal, Côte d'Ivoire..." />
+              <input className="input" value={form.pays} onChange={e => setField("pays", e.target.value)} placeholder="Ex : Mali, Sénégal, Côte d'Ivoire..." />
             </div>
           )}
 

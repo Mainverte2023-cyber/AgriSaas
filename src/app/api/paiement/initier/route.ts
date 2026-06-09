@@ -31,7 +31,8 @@ export async function POST(req: Request) {
     // ── Appel Orange Money API ──
     // Orange Money Guinée utilise l'API Orange Developer
     // Documentation : https://developer.orange.com/apis/om-webpay-gn/
-    const omResponse = await fetch("https://api.orange.com/orange-money-webpay/gn/v1/webpayment", {
+    // Orange Money Mali — endpoint ML, devise XOF
+    const omResponse = await fetch("https://api.orange.com/orange-money-webpay/ml/v1/webpayment", {
       method: "POST",
       headers: {
         "Authorization": `Bearer ${process.env.ORANGE_MONEY_ACCESS_TOKEN}`,
@@ -40,7 +41,7 @@ export async function POST(req: Request) {
       },
       body: JSON.stringify({
         merchant_key:    process.env.ORANGE_MONEY_MERCHANT_KEY,
-        currency:        "GNF",
+        currency:        "XOF",
         order_id:        reference,
         amount:          montant,
         return_url:      `${process.env.NEXT_PUBLIC_APP_URL}/dashboard/abonnement?paiement=success`,
