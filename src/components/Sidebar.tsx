@@ -23,6 +23,7 @@ const NAV: NavItem[] = [
   { href: "/dashboard/irrigation",   icon: "💧", label: "Irrigation",        roles: ["super_admin","admin_client","agent_terrain","technicien"] },
   { href: "/dashboard/agents",       icon: "👷", label: "Agents terrain",    roles: ["super_admin","admin_client"] },
   { href: "/dashboard/carte",        icon: "🗺️", label: "Carte",             roles: ["super_admin","admin_client","client","agent_terrain","technicien","observateur"] },
+  { href: "/dashboard/comptabilite",  icon: "💰", label: "Comptabilité",      roles: ["super_admin","admin_client","client","comptable"] },
   { href: "/dashboard/messages",     icon: "💬", label: "Messagerie",        roles: ["super_admin","admin_client","client","agent_terrain","technicien","comptable"] },
   { href: "/dashboard/rapports",     icon: "📊", label: "Rapports",          roles: ["super_admin","admin_client","comptable","observateur"] },
   { href: "/dashboard/abonnement",   icon: "💳", label: "Abonnement",        roles: ["super_admin","admin_client"] },
