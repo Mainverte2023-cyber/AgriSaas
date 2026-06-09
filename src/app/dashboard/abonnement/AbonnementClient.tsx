@@ -51,12 +51,13 @@ export default function AbonnementClient({ abonnement, paiements, org, profil, o
     setMessage({ text: data.error ?? "Erreur lors du paiement", ok: false });
   }
 
-  const statutColor = {
+  const statutColors: Record<string, { bg: string; badge: string; dot: string }> = {
     actif:     { bg: "bg-green-50 border-green-200", badge: "badge-green", dot: "active" },
     en_retard: { bg: "bg-amber-50 border-amber-200", badge: "badge-amber", dot: "warning" },
     suspendu:  { bg: "bg-red-50 border-red-200",     badge: "badge-red",   dot: "danger" },
     resilie:   { bg: "bg-slate-50 border-slate-200", badge: "badge-slate", dot: "idle" },
-  }[abonnement?.statut ?? "actif"] ?? { bg: "bg-slate-50 border-slate-200", badge: "badge-slate", dot: "idle" };
+  };
+  const statutColor = statutColors[abonnement?.statut ?? "actif"] ?? { bg: "bg-slate-50 border-slate-200", badge: "badge-slate", dot: "idle" };
 
   return (
     <div className="animate-fade-up space-y-6 max-w-3xl">
