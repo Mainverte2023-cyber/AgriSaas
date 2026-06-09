@@ -2,11 +2,12 @@
 import { useState } from "react";
 
 const ROLES = [
-  { value: "admin_client",   label: "Administrateur client" },
-  { value: "agent_terrain",  label: "Agent terrain" },
-  { value: "technicien",     label: "Technicien agricole" },
-  { value: "comptable",      label: "Comptable" },
-  { value: "observateur",    label: "Observateur" },
+  { value: "client",         label: "👤 Client (accès limité à ses champs)" },
+  { value: "admin_client",   label: "🏢 Administrateur client" },
+  { value: "agent_terrain",  label: "👷 Agent terrain" },
+  { value: "technicien",     label: "🔧 Technicien agricole" },
+  { value: "comptable",      label: "💰 Comptable" },
+  { value: "observateur",    label: "👁️ Observateur" },
 ];
 
 const ROLE_BADGES: Record<string, string> = {
@@ -29,7 +30,7 @@ export default function AdminUsersClient({ utilisateurs, organisations }: Props)
   const [message, setMessage] = useState<{ text: string; ok: boolean } | null>(null);
   const [form, setForm] = useState({
     email: "", telephone: "", password: "", nom_complet: "",
-    role: "admin_client", organisation_id: organisations[0]?.id ?? "",
+    role: "client", organisation_id: organisations[0]?.id ?? "",
     nouvelle_org: "", pays: "Guinée",
   });
   const [creerOrg, setCreerOrg] = useState(false);

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
-type Role = "super_admin" | "admin_client" | "agent_terrain" | "comptable" | "technicien" | "observateur";
+type Role = "super_admin" | "admin_client" | "client" | "agent_terrain" | "comptable" | "technicien" | "observateur";
 
 interface NavItem {
   href: string;
@@ -15,10 +15,11 @@ interface NavItem {
 }
 
 const NAV: NavItem[] = [
-  { href: "/dashboard",              icon: "🏠", label: "Tableau de bord",   roles: ["super_admin","admin_client","agent_terrain","comptable","technicien","observateur"] },
-  { href: "/dashboard/champs",       icon: "🗺️", label: "Mes champs",        roles: ["super_admin","admin_client","agent_terrain","technicien","observateur"] },
-  { href: "/dashboard/cultures",     icon: "🌾", label: "Cultures",          roles: ["super_admin","admin_client","agent_terrain","technicien","observateur"] },
-  { href: "/dashboard/intrants",     icon: "🧪", label: "Intrants",          roles: ["super_admin","admin_client","agent_terrain","technicien"] },
+  { href: "/dashboard",              icon: "🏠", label: "Tableau de bord",   roles: ["super_admin","admin_client","client","agent_terrain","comptable","technicien","observateur"] },
+  { href: "/dashboard/champs",       icon: "🗺️", label: "Mes champs",        roles: ["super_admin","admin_client","client","agent_terrain","technicien","observateur"] },
+  { href: "/dashboard/cultures",     icon: "🌾", label: "Cultures",          roles: ["super_admin","admin_client","client","agent_terrain","technicien","observateur"] },
+  { href: "/dashboard/intrants",     icon: "🧪", label: "Intrants",          roles: ["super_admin","admin_client","client","agent_terrain","technicien"] },
+  { href: "/dashboard/diagnostic",   icon: "🔬", label: "Diagnostic",        roles: ["super_admin","admin_client","client","agent_terrain","technicien","observateur"] },
   { href: "/dashboard/irrigation",   icon: "💧", label: "Irrigation",        roles: ["super_admin","admin_client","agent_terrain","technicien"] },
   { href: "/dashboard/agents",       icon: "👷", label: "Agents terrain",    roles: ["super_admin","admin_client"] },
   { href: "/dashboard/rapports",     icon: "📊", label: "Rapports",          roles: ["super_admin","admin_client","comptable","observateur"] },
