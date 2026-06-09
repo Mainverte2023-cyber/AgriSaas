@@ -3,7 +3,8 @@ import { createClient } from "@/lib/supabase/server";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 
-export default async function ChampDetailPage({ params }: { params: { id: string } }) {
+export default async function ChampDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   const { data: profil } = await supabase.from("profils").select("organisation_id, role").eq("id", user!.id).single();
@@ -11,11 +12,11 @@ export default async function ChampDetailPage({ params }: { params: { id: string
   const role  = (profil as any)?.role;
   const orgId = (profil as any)?.organisation_id;
 
-  // Récupérer le champ — super_admin et agents voient tous les champs de leur org
+  // Récupérer le champ
   const { data: champ } = await supabase
     .from("champs")
     .select("*, organisations(nom)")
-    .eq("id", params.id)
+    .eq("id", id)
     .single();
 
   if (!champ) return notFound();
